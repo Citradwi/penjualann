@@ -1,0 +1,28 @@
+<?php
+//citra dwi
+include("koneksi.php");
+
+if(isset($_POST ['simpan'] )){;
+        $kode = $_POST['id'];
+        $nama = isset($_POST['nama']);
+        $tempat = isset($_POST['tempat lahir']);
+        $tanggal = isset($_POST['tanggal lahir']);
+        $alamat = isset($_POST['alamat'];
+        $jk = isset($_POST['jenis_kelamin']);
+        $agama = isset($_POST['agama']);
+
+
+    $sql = "UPDATE tb_daftar SET 'nama=$nama' tempat_lahir='$tempat',
+    tanggal_lahir='$tanggal',alamat='$alamat', jenis_kelamin='$jk',
+    agama='$agama' WHERE ID=$kode";
+    $query = mysqli_query($db, $sql);
+
+    if($query){
+            header('Location:tbl pendaftaran.php');
+     }else{
+            die ("gagal mengedit");
+     }}
+     else{
+            die("akses dilarang");
+     }
+?>

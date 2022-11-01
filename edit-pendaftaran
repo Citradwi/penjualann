@@ -1,0 +1,56 @@
+<?php
+//citra dwi
+include("koneksi.php");
+if(!isset($_GET['id'])){
+    header("Location:tb_daftar.php?");
+}
+    $kode=$_GET['id'];
+    $sql="SELECT * FROM tb_daftar where id=$kode";
+    $query = mysqli_query($db,$sql);
+    $barang = mysqli_fetch_assoc($query);
+
+    if(mysqli_num_rows($query) < 1){
+        die ("Data tidak ditemukan");
+    }
+
+?>
+<html>
+    <head>
+    </head>
+    <body>
+        <h1> From Edit daftar </h1>
+        <from action="proses-edit-pendaftaran.php" method="POST">
+            <fieldset>
+                <inout type="hidden" name="id" value="<?php echo $barang['id']?>" />
+                <p>
+                    <label name="nama"> Nama Lengkap : </label>
+                    <input type="number" value="<?php echo $barang ['nama']?>" />
+                </p>
+                <p>
+                    <label name="tempat"> Tempat_lahir : </label>
+                    <input type="number" value="<?php echo $barang ['tempat']?>" />
+                </p>
+                <p>
+                    <label name="tanggal"> Tanggal lahir : </label>
+                    <input type="number" value="<?php echo $barang ['tanggal']?>" />
+                </p>
+                <p>
+                    <label name="alamat"> Alamat : </label>
+                    <input type="number" value="<?php echo $barang ['alamat']?>" />
+                </p>
+                <p>
+                    <label name="jenis_kelamin"> jenis_kelamin : </label>
+                    <input type="number" value="<?php echo $barang ['jenis_kelamin']?>" />
+                </p>
+                <p>
+                    <label name="agama"> agama : </label>
+                    <input type="number" value="<?php echo $barang ['agama']?>" />
+                </p>
+                <p>
+                    <input type="submit" value="Simpan" name="simpan" />
+                </p>
+            </fieldset>
+
+        </from>
+    </body>
+</html>
